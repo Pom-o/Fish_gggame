@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -224,8 +224,8 @@ public class PlayerController : MonoBehaviour
     // Hook State
     void hookIfNotHooked(GameObject other) {
         if (states.Contains(State.Hooked)) return;
-        AddState(State.Hooked);
         hookBy = other.gameObject;
+        AddState(State.Hooked);
 
     }
     void ApplyHookState()
