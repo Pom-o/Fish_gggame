@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    enum State { Hooked, Electrocuted, FoodPoisoned,  }
+    [SerializeField] private HashSet<State> states = new HashSet<State>();
+
+    // For hook state
+    [SerializeField] GameObject hookBy;
+    [SerializeField] float hookEscapePressed = 0;
+
     public float currentSpeed;
 
     //when player "delicious" -> add {speedUp}to speed
@@ -22,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int escapeCount = 5;
 
     //health control
-    public int currentHealth = 100;
+    public float currentHealth = 100;
     public int maxHealth;
     public HealthBar healthbar;
 
@@ -55,9 +62,12 @@ public class PlayerController : MonoBehaviour
 
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput.normalized * currentSpeed;
+
+        ApplyStateEffects();
+        TryToDetectEscapeIfHooked();
     }
 
-    void TakeDamage(int damage)
+    void TakeDamage(float damage)
     {
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
@@ -102,6 +112,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(RecoverFromDamage());
             //the code of change of state (animation) below:
 
+
         }
 
         if (other.CompareTag("electrocuted")) //paralized & hurt a little? //countdown time
@@ -110,6 +121,13 @@ public class PlayerController : MonoBehaviour
 
             //the code of change of state (animation) below:
         }
+
+        // Fishnet
+        if (other.CompareTag("Fishnet")) {
+            Debug.Log("Collide with Fishnet");
+            hookIfNotHooked(other.gameObject);
+        }
+
     }
 
 
@@ -126,6 +144,58 @@ public class PlayerController : MonoBehaviour
         TakeDamage(-20);
         yield return new WaitForSeconds(fullTime);
     }
+
+    // States manager
+    void ApplyStateEffects() { 
+       if (states.Contains(State.Hooked) && hookBy is object) {
+            ApplyHookState();
+        }
+    }
+
+    // Hook State
+    public bool isHooked() {
+        return states.Contains(State.Hooked);
+    }
+    void hookIfNotHooked(GameObject other) {
+        if (isHooked()) return;
+        states.Add(State.Hooked);
+        hookBy = other.gameObject;
+
+    }
+    void ApplyHookState()
+    {
+        transform.position = new Vector3(hookBy.transform.position.x, hookBy.transform.position.y, transform.position.z);
+        TakeDamage(hookBy.GetComponent<Hookable>().damage * Time.deltaTime);
+        Debug.Log("Press q repeatedly to escape!!!");
+    }
+
+    void TryToDetectEscapeIfHooked() {
+        if (!states.Contains(State.Hooked)) { return; }
+
+        Hookable hookObject = hookBy.GetComponent<Hookable>();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            hookEscapePressed += 1;
+        }
+        if (hookEscapePressed >= hookObject.hookEscapePressTarget)
+        {
+            EscapeFromHook();
+            return;
+        }
+        if (hookEscapePressed > 0)
+        {
+            hookEscapePressed -= hookObject.PressStrengthWeakeningRate() * Time.deltaTime;
+        }
+    }
+
+    void EscapeFromHook() {
+        Debug.Log("Escape from hook state successfully");
+        states.Remove(State.Hooked);
+        Destroy(hookBy);
+        hookBy = null;
+        hookEscapePressed = 0;
+    }
+
 
 }
 
