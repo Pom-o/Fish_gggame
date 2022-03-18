@@ -30,10 +30,11 @@ public class PlayerController : MonoBehaviour
 
     // For Plasticized state
     float plasticizedDamage = 20;
+    float decreasedMaxHealthByPlastic = 20;
     float recoverTime = 1;
     float remainRecoverTime = 0;
 
-    // For FoodRecover state
+    // For Full state
     [SerializeField] float fullTime = 5.0f;
     [SerializeField] float remainFullTime;
 
@@ -45,12 +46,6 @@ public class PlayerController : MonoBehaviour
 
 
     //when player ate plastic bags[0] / poisoned[1] -> divide the damage cases
-
-    //the damaged divided from speed
-    [SerializeField] float damagedSpeed = 5;
-    //last for {damageTime}
-    [SerializeField] float damageTime = 5f;
-    [SerializeField] int escapeCount = 5;
 
     //health control
     public float currentHealth = 100;
@@ -231,6 +226,7 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(other);
         TakeDamage(plasticizedDamage);
+        healthbar.DecreaseMaxHealth(decreasedMaxHealthByPlastic);
 
         remainRecoverTime += recoverTime;
         if (!states.Contains(State.Plasticized)) { 
