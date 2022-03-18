@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(20);
         }
-
+//moveVelocity = (moveInput.normalized +  Vector2.right) * currentSpeed/10;
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput.normalized * currentSpeed;
 
