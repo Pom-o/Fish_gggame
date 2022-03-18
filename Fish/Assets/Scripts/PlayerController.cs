@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    enum State { Hooked, Electrocuted, FoodPoisoned,  Toxiced, SpeedUp, Plasticized }
+    enum State { Hooked, Electrocuted, Toxiced, Full, Plasticized }
     [SerializeField] private HashSet<State> states = new HashSet<State>();
 
     // For hooked state
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         {State.Toxiced, -8 },
         {State.Plasticized, -5 },
         {State.Electrocuted, -9 },
-        {State.SpeedUp, 5 }
+        {State.Full, 5 }
     };
 
 
@@ -28,16 +28,20 @@ public class PlayerController : MonoBehaviour
     float paralysisTime = 3;
     float remainParalysisTime = 0;
 
-    // For speedUp state
-
     // For Plasticized state
+    float plasticizedDamage = 20;
+    float recoverTime = 1;
+    float remainRecoverTime = 0;
+
+    // For FoodRecover state
+    [SerializeField] float fullTime = 5.0f;
+    [SerializeField] float remainFullTime;
 
 
     //when player "delicious" -> add {speedUp}to speed
     [SerializeField] float speedNormal = 10;
     [SerializeField] float currentSpeed;
 
-    [SerializeField] float fullTime;
 
 
     //when player ate plastic bags[0] / poisoned[1] -> divide the damage cases
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour
         if (speed < 0) {
             speed = 1;
         }
+        Debug.Log($"Set speed to {speed}");
         return speed;
     }
 
@@ -121,49 +126,38 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //for damages like plastic bag/ poisoned water / electroized field
-        if (other.CompareTag("food"))
+        if (other.CompareTag("Food"))
         {
             Debug.Log($"Player collided with {other.gameObject.name} . And this is supposed to be the food");
-            Destroy(other.gameObject);
-            //use a method to delicious->speedUp + add health ->speedUp disappears
-
-            StartCoroutine(AteCountDownRoutine());
-
-            TakeDamage(-20);
-            //speed up edicator
-
+            ApplyFullState(other.gameObject);
         }
 
-        if (other.CompareTag("enemy"))
+
+        // Plastic
+        if (other.CompareTag("Plastic"))
         {
-            //enemy is the plastic bag
-            AddState(State.Plasticized);
-            Debug.Log("current speed is" + currentSpeed);
-            //hurt = true;
-            TakeDamage(20);
-            Destroy(other.gameObject);
-            StartCoroutine(RecoverFromDamage());
-            //the code of change of state (animation) below:
-
-
+            ApplyPlasticizedEffet(other.gameObject);
         }
 
 
         // Fishnet
-        if (other.CompareTag("Fishnet")) {
+        if (other.CompareTag("Fishnet"))
+        {
             Debug.Log("Hook by Fishnet");
             hookIfNotHooked(other.gameObject);
         }
 
         // Toxic area
-        if (other.CompareTag("ToxicArea")) {
+        if (other.CompareTag("ToxicArea"))
+        {
             Debug.Log("Entering Fishnet");
             toxicIfNotToxiced(other.gameObject);
         }
 
         // Electric shocker
-        if (other.CompareTag("ElectricShocker")) {
-            Debug.Log("hit Electric Shocker");
+        if (other.CompareTag("ElectricShocker"))
+        {
+            Debug.Log("Hitting Electric Shocker");
             ApplyElectrocutedEffet(other.gameObject);
         }
 
@@ -178,20 +172,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    IEnumerator RecoverFromDamage()
-    {
-        yield return new WaitForSeconds(damageTime);
-        RemoveState(State.Plasticized);
-    }
-
-    IEnumerator AteCountDownRoutine()
-    {
-        AddState(State.SpeedUp);
-        //add 20 to healthBar
-        TakeDamage(-20);
-        yield return new WaitForSeconds(fullTime);
-        RemoveState(State.SpeedUp);
-    }
 
     // States manager
     void AddState(State state) {
@@ -211,6 +191,55 @@ public class PlayerController : MonoBehaviour
        if (states.Contains(State.Toxiced)) {
             ApplyToxicedEffet();
         }
+    }
+
+
+    // Full State
+    void ApplyFullState(GameObject other) {
+        //use a method to delicious->speedUp + add health ->speedUp disappears
+        Destroy(other);
+        TakeDamage(-20);
+
+        remainFullTime += fullTime;
+        if (!states.Contains(State.Full))
+        {
+            AddState(State.Full);
+            StartCoroutine(AteCountDownRoutine());
+        }
+    }
+
+    IEnumerator AteCountDownRoutine()
+    {
+        while (remainFullTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            remainFullTime -= 1;
+        }
+        remainFullTime = 0;
+        RemoveState(State.Full);
+    }
+
+    // Plasticized State
+    void ApplyPlasticizedEffet(GameObject other)
+    {
+        Destroy(other);
+        TakeDamage(plasticizedDamage);
+
+        remainRecoverTime += recoverTime;
+        if (!states.Contains(State.Plasticized)) { 
+            AddState(State.Plasticized);
+            StartCoroutine(RecoverFromPlasticDamage());
+        }
+    }
+
+    IEnumerator RecoverFromPlasticDamage() {
+        while (remainRecoverTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            remainRecoverTime -= 1;
+        }
+        remainRecoverTime = 0;
+        RemoveState(State.Plasticized);
     }
 
     // Electrocuted State
