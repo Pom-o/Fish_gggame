@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Hookable : MonoBehaviour
 {
-    public float damage = 5.0f;
-
     // Escape by pressing hookEscapeHitted in hookEscapeInterval seconds
     public float hookEscapeInterval = 5.0f;
     public int hookEscapePressTarget = 5;

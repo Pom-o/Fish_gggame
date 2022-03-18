@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    enum State { Hooked, Electrocuted, FoodPoisoned,  }
+    enum State { Hooked, Electrocuted, FoodPoisoned,  Toxiced, SpeedUp, Plasticized }
     [SerializeField] private HashSet<State> states = new HashSet<State>();
 
-    // For hook state
+    // For hooked state
     [SerializeField] GameObject hookBy;
     [SerializeField] float hookEscapePressed = 0;
 
-    public float currentSpeed;
+    // State Effects for speed
+    private Dictionary<State, float> stateForSpeedEffect = new Dictionary<State, float>{
+        {State.Toxiced, -8 },
+        {State.Plasticized, -5 },
+        {State.Electrocuted, -9 },
+        {State.SpeedUp, 5 }
+    };
+
+
+    // For Toxiced state
+    [SerializeField] GameObject toxicedBy;
+
+    // For speedUp state
+
+    // For Plasticized state
+
 
     //when player "delicious" -> add {speedUp}to speed
     [SerializeField] float speedNormal = 10;
-    [SerializeField] float speedUp = 15;
+    [SerializeField] float currentSpeed;
 
     [SerializeField] float fullTime;
 
@@ -50,6 +65,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("the current health is " + currentHealth);
 
         currentSpeed = speedNormal;
+
     }
 
     private void Update()
@@ -67,6 +83,21 @@ public class PlayerController : MonoBehaviour
         TryToDetectEscapeIfHooked();
     }
 
+
+    public float RefreshCurrentSpeed() {
+        float speed = speedNormal;
+
+        foreach(State state in states) {
+            if (stateForSpeedEffect.ContainsKey(state)) {
+                speed += stateForSpeedEffect[state];
+            }
+        }
+        if (speed < 0) {
+            speed = 1;
+        }
+        return speed;
+    }
+
     void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -75,15 +106,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("current health is " + currentHealth + " .");
     }
 
-    void setSpeedNormal()
-    {
-        currentSpeed = speedNormal;
-    }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -104,7 +132,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("enemy"))
         {
             //enemy is the plastic bag
-            currentSpeed = damagedSpeed;
+            AddState(State.Plasticized);
             Debug.Log("current speed is" + currentSpeed);
             //hurt = true;
             TakeDamage(20);
@@ -115,12 +143,12 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (other.CompareTag("electrocuted")) //paralized & hurt a little? //countdown time
-        {
-            currentSpeed = 0.1f;
+        //if (other.CompareTag("electrocuted")) //paralized & hurt a little? //countdown time
+        //{
+        //    //states.Add(State.Electrocuted);
 
-            //the code of change of state (animation) below:
-        }
+        //    //the code of change of state (animation) below:
+        //}
 
         // Fishnet
         if (other.CompareTag("Fishnet")) {
@@ -128,44 +156,82 @@ public class PlayerController : MonoBehaviour
             hookIfNotHooked(other.gameObject);
         }
 
+        // Toxic area
+        if (other.CompareTag("ToxicArea")) {
+            Debug.Log("Entering  Fishnet");
+            toxicIfNotToxiced(other.gameObject);
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("ToxicArea")) {
+            Debug.Log("Exiting  Fishnet");
+            RemoveState(State.Toxiced);
+        }
     }
 
 
     IEnumerator RecoverFromDamage()
     {
         yield return new WaitForSeconds(damageTime);
-        setSpeedNormal();
+        RemoveState(State.Plasticized);
     }
 
     IEnumerator AteCountDownRoutine()
     {
-        currentSpeed = speedUp;
+        AddState(State.SpeedUp);
         //add 20 to healthBar
         TakeDamage(-20);
         yield return new WaitForSeconds(fullTime);
+        RemoveState(State.SpeedUp);
     }
 
     // States manager
+    void AddState(State state) {
+        states.Add(state);
+        currentSpeed = RefreshCurrentSpeed();
+    }
+
+    void RemoveState(State state) { 
+        states.Remove(state);
+        currentSpeed = RefreshCurrentSpeed();
+    }
+
     void ApplyStateEffects() { 
        if (states.Contains(State.Hooked) && hookBy is object) {
             ApplyHookState();
         }
+       if (states.Contains(State.Toxiced)) {
+            ApplyToxicEffet();
+        }
+    }
+
+    // Toxic State
+    void toxicIfNotToxiced(GameObject other)
+    {
+        if (states.Contains(State.Toxiced)) return;
+        AddState(State.Toxiced);
+        toxicedBy = other.gameObject;
+    }
+
+    void ApplyToxicEffet()
+    {
+        TakeDamage(toxicedBy.GetComponent<ContinuousDamage>().damage * Time.deltaTime);
     }
 
     // Hook State
-    public bool isHooked() {
-        return states.Contains(State.Hooked);
-    }
     void hookIfNotHooked(GameObject other) {
-        if (isHooked()) return;
-        states.Add(State.Hooked);
+        if (states.Contains(State.Hooked)) return;
+        AddState(State.Hooked);
         hookBy = other.gameObject;
 
     }
     void ApplyHookState()
     {
         transform.position = new Vector3(hookBy.transform.position.x, hookBy.transform.position.y, transform.position.z);
-        TakeDamage(hookBy.GetComponent<Hookable>().damage * Time.deltaTime);
+        TakeDamage(hookBy.GetComponent<ContinuousDamage>().damage * Time.deltaTime);
         Debug.Log("Press q repeatedly to escape!!!");
     }
 
@@ -190,7 +256,7 @@ public class PlayerController : MonoBehaviour
 
     void EscapeFromHook() {
         Debug.Log("Escape from hook state successfully");
-        states.Remove(State.Hooked);
+        RemoveState(State.Hooked);
         Destroy(hookBy);
         hookBy = null;
         hookEscapePressed = 0;
