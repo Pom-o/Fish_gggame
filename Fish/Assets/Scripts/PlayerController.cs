@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     // For Toxiced state
     [SerializeField] GameObject toxicedBy;
 
+    // For Electrocuted
+    float electrocutedDamage = 30;
+    float paralysisTime = 3;
+    float remainParalysisTime = 0;
+
     // For speedUp state
 
     // For Plasticized state
@@ -143,23 +148,23 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        //if (other.CompareTag("electrocuted")) //paralized & hurt a little? //countdown time
-        //{
-        //    //states.Add(State.Electrocuted);
-
-        //    //the code of change of state (animation) below:
-        //}
 
         // Fishnet
         if (other.CompareTag("Fishnet")) {
-            Debug.Log("Collide with Fishnet");
+            Debug.Log("Hook by Fishnet");
             hookIfNotHooked(other.gameObject);
         }
 
         // Toxic area
         if (other.CompareTag("ToxicArea")) {
-            Debug.Log("Entering  Fishnet");
+            Debug.Log("Entering Fishnet");
             toxicIfNotToxiced(other.gameObject);
+        }
+
+        // Electric shocker
+        if (other.CompareTag("ElectricShocker")) {
+            Debug.Log("hit Electric Shocker");
+            ApplyElectrocutedEffet(other.gameObject);
         }
 
     }
@@ -201,11 +206,34 @@ public class PlayerController : MonoBehaviour
 
     void ApplyStateEffects() { 
        if (states.Contains(State.Hooked) && hookBy is object) {
-            ApplyHookState();
+            ApplyHookedState();
         }
        if (states.Contains(State.Toxiced)) {
-            ApplyToxicEffet();
+            ApplyToxicedEffet();
         }
+    }
+
+    // Electrocuted State
+    void ApplyElectrocutedEffet(GameObject other)
+    {
+        Destroy(other);
+        TakeDamage(electrocutedDamage);
+
+        remainParalysisTime += paralysisTime;
+        if (!states.Contains(State.Electrocuted)) { 
+            AddState(State.Electrocuted);
+            StartCoroutine(ApplyParalizingEffect());
+        }
+    }
+
+    IEnumerator ApplyParalizingEffect() {
+        while (remainParalysisTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            remainParalysisTime -= 1;
+        }
+        remainParalysisTime = 0;
+        RemoveState(State.Electrocuted);
     }
 
     // Toxic State
@@ -216,7 +244,7 @@ public class PlayerController : MonoBehaviour
         toxicedBy = other.gameObject;
     }
 
-    void ApplyToxicEffet()
+    void ApplyToxicedEffet()
     {
         TakeDamage(toxicedBy.GetComponent<ContinuousDamage>().damage * Time.deltaTime);
     }
@@ -228,7 +256,7 @@ public class PlayerController : MonoBehaviour
         AddState(State.Hooked);
 
     }
-    void ApplyHookState()
+    void ApplyHookedState()
     {
         transform.position = new Vector3(hookBy.transform.position.x, hookBy.transform.position.y, transform.position.z);
         TakeDamage(hookBy.GetComponent<ContinuousDamage>().damage * Time.deltaTime);
