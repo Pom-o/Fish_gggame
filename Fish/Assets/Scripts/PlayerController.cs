@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     enum State { Hooked, Electrocuted, Toxiced, Full, Plasticized }
     [SerializeField] private HashSet<State> states = new HashSet<State>();
 
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour
 
         ApplyStateEffects();
         TryToDetectEscapeIfHooked();
+       
     }
 
 
@@ -115,6 +117,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+     
+     //limit moving on Y-axis
+     transform.position = new Vector3(transform.position.x, Mathf.Clamp( transform.position.y, -3f, 2f), transform.position.z);
     }
 
 
