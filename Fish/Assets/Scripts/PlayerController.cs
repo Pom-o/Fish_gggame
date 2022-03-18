@@ -132,6 +132,13 @@ public class PlayerController : MonoBehaviour
             ApplyFullState(other.gameObject);
         }
 
+        // Hook
+        if (other.CompareTag("Hook"))
+        {
+            TakeDamage(30);
+            other.GetComponent<SelfDestory>().disable();
+            hookIfNotHooked(other.gameObject);
+        }
 
         // Plastic
         if (other.CompareTag("Plastic"))

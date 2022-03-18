@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - enemy
   - Fishnet
   - ToxicArea
   - ElectricShocker
   - Plastic
   - Food
+  - Hook
   layers:
   - Default
   - TransparentFX

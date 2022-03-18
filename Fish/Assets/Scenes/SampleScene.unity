@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cbcbeaefba642c19b63ea87cc41a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
 --- !u!1 &654948373
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,10 +932,12 @@ GameObject:
   - component: {fileID: 654948374}
   - component: {fileID: 654948377}
   - component: {fileID: 654948378}
+  - component: {fileID: 654948380}
   - component: {fileID: 654948379}
+  - component: {fileID: 654948381}
   m_Layer: 0
   m_Name: Enemy-Hook
-  m_TagString: enemy
+  m_TagString: Hook
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1077,6 +1080,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDisappear: 5
+  destoryEnable: 1
+--- !u!114 &654948380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654948373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626fa4a3ccd9e452dbeffb2e747e973d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hookEscapeInterval: 5
+  hookEscapePressTarget: 5
+--- !u!114 &654948381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654948373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0926e5c53dc848028f70fcea8cc7347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1 &999770705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDisappear: 5
+  destoryEnable: 1
 --- !u!1 &1863729246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,6 +1687,7 @@ GameObject:
   - component: {fileID: 1863729249}
   - component: {fileID: 1863729248}
   - component: {fileID: 1863729247}
+  - component: {fileID: 1863729250}
   m_Layer: 0
   m_Name: Enemy-Plastic
   m_TagString: Plastic
@@ -1753,3 +1786,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1863729250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863729246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55cbcbeaefba642c19b63ea87cc41a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3

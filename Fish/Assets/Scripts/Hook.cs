@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Hook : MonoBehaviour
 {
     [SerializeField] float speed;
     private Rigidbody2D enemyRb;
@@ -32,4 +32,5 @@ public class Enemy : MonoBehaviour
         return randomPos;
     }
     */
+
 }

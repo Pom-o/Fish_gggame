@@ -5,6 +5,7 @@ using UnityEngine;
 public class SelfDestory : MonoBehaviour
 {
     [SerializeField] float timeDisappear = 5f;
+    [SerializeField] bool destoryEnable = true;
 
     void Start()
     {
@@ -15,9 +16,16 @@ public class SelfDestory : MonoBehaviour
     {
     }
 
+    public void disable() {
+        destoryEnable = false;
+    }
+
     IEnumerator Destroy()
     {
         yield return new WaitForSeconds(timeDisappear);
-        Destroy(this.gameObject);
+        if (destoryEnable)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
