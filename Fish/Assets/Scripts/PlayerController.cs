@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
 
     // limit Move region
     float leftBound = -5.2f;
-    float rightBound = 7.2f;
+    float rightBound = 4.8f;
     float bottomBound = -4.2f;
     float topBound = 2.4f;
 
