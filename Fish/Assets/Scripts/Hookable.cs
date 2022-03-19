@@ -1,12 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Hookable : MonoBehaviour
 {
     // Escape by pressing hookEscapeHitted in hookEscapeInterval seconds
-    public float hookEscapeInterval = 5.0f;
-    public int hookEscapePressTarget = 5;
+    public float hookEscapeInterval = 15.0f;
+    public int hookEscapePressTarget = 3;
 
     public float PressStrengthWeakeningRate() {
         return hookEscapePressTarget / hookEscapeInterval;

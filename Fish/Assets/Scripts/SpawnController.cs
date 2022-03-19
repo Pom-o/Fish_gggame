@@ -8,7 +8,7 @@ public class SpawnController : MonoBehaviour
     public GameObject[] prefabs;
 
     public float startDelay = 5f;
-    public float spawnInterval = 1.5f;
+    public float spawnInterval = 3f;
     [SerializeField] float leftBound = -7.2f;
     [SerializeField] float rightBound = 7.2f;
     [SerializeField] float bottomBound = -4f;
@@ -22,7 +22,7 @@ public class SpawnController : MonoBehaviour
 
     void SpawnRandom() {
         int index = Random.Range(0, prefabs.Length - 1);
-        Vector3 spawnPos = new Vector3(7, Random.Range(bottomBound, topBound), 0);
+        Vector3 spawnPos = new Vector3(8, Random.Range(bottomBound, topBound), 0);
         Instantiate(prefabs[index],
             spawnPos,
             prefabs[index].transform.rotation);
