@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(other);
         TakeDamage(plasticizedDamage);
-        healthbar.DecreaseMaxHealth(decreasedMaxHealthByPlastic);
+        //healthbar.DecreaseMaxHealthByPlastic(decreasedMaxHealthByPlastic);
 
         remainRecoverTime += recoverTime;
         if (!states.Contains(State.Plasticized)) { 
@@ -295,6 +295,7 @@ public class PlayerController : MonoBehaviour
     void ApplyToxicedEffet()
     {
         TakeDamage(toxicedBy.GetComponent<ContinuousDamage>().damage * Time.deltaTime);
+        healthbar.DecreaseMaxHealthByToxic(toxicedBy.GetComponent<ContinuousDamage>().healthLimitDamage * Time.deltaTime);
     }
 
     // Hook State

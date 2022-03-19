@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ContinuousDamage : MonoBehaviour
 {
     public float damage = 5.0f;
+    public float healthLimitDamage = 5.0f;
     // Start is called before the first frame update
     void Start()
     {

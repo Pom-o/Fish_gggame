@@ -5,23 +5,36 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider slider;
+    public Slider healthBar;
+    public Slider toxicBar;
+    public float suppressByPlastic = 0;
 
     public void SetMaxHealth(float health)
     {
-        slider.maxValue = health;
-        slider.value = health;
+        healthBar.maxValue = health;
+        healthBar.value = health;
+        toxicBar.maxValue = health;
+        toxicBar.value = 0;
     }
 
-    public void DecreaseMaxHealth(float decreased)
+    float LimitedMaxHealth() {
+        return healthBar.maxValue - toxicBar.value;
+    }
+
+    public void DecreaseMaxHealthByToxic(float decreased)
     {
-        slider.maxValue -= decreased;
-        slider.value -= decreased;
+        healthBar.value -= decreased;
+        toxicBar.value += decreased;
+    }
+
+    public void DecreaseMaxHealthByPlastic(float decreased)
+    {
+        healthBar.value -= decreased;
     }
 
     public void SetHealth(float health)
     {
-        slider.value = health;
+        healthBar.value = Mathf.Min(health, LimitedMaxHealth());
     }
 
 }
