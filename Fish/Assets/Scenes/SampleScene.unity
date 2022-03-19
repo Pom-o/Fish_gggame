@@ -810,7 +810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -15, y: -2}
   m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &294670382
@@ -1689,10 +1689,6 @@ MonoBehaviour:
   - {fileID: 8521641488994644689, guid: b14f70fcf6f184bc6924b0a583b7f6ae, type: 3}
   startDelay: 5
   spawnInterval: 3
-  leftBound: -7.2
-  rightBound: 7.2
-  bottomBound: -4
-  topBound: 2.2
 --- !u!1 &1424460797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,10 +1892,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthbar: {fileID: 145497672}
-  leftBound: -7.2
-  rightBound: 7.2
-  bottomBound: -4.2
-  topBound: 2.4
 --- !u!212 &1647385780
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2860,10 +2852,6 @@ PrefabInstance:
     - target: {fileID: 4435865131194433400, guid: 38424417c5466479483b9d313b6cbdaf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4435865131194433401, guid: 38424417c5466479483b9d313b6cbdaf, type: 3}
-      propertyPath: speed
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38424417c5466479483b9d313b6cbdaf, type: 3}
