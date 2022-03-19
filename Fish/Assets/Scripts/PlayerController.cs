@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
     float remainParalysisTime = 0;
 
     // For Plasticized state
-    float plasticizedDamage = 20;
-    float decreasedMaxHealthByPlastic = 20;
+    float plasticizedDamage = 10;
+    float decreasedMaxHealthByPlastic = 10;
     float recoverTime = 1;
     float remainRecoverTime = 0;
 
@@ -264,7 +264,7 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(other);
         TakeDamage(plasticizedDamage);
-        //healthbar.DecreaseMaxHealthByPlastic(decreasedMaxHealthByPlastic);
+        healthbar.DecreaseMaxHealthByPlastic();
 
         remainRecoverTime += recoverTime;
         if (!states.Contains(State.Plasticized))
