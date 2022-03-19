@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speedNormal = 10;
     [SerializeField] float currentSpeed;
 
+    // Enemies realted
+    [SerializeField] float hookDamage = 30;
 
 
     //when player ate plastic bags[0] / poisoned[1] -> divide the damage cases
@@ -140,7 +142,7 @@ public class PlayerController : MonoBehaviour
         // Hook
         if (other.CompareTag("Hook"))
         {
-            TakeDamage(30);
+            TakeDamage(hookDamage);
             other.GetComponent<SelfDestory>().disable();
             hookIfNotHooked(other.gameObject);
         }
