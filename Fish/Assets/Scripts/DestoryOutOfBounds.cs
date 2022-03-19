@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestoryOutOfBounds : MonoBehaviour
 {
-    [SerializeField] float leftBound = -15;
+    [SerializeField] float leftBound = -6;
     [SerializeField] float bottomBound = -6f;
 
     // Start is called before the first frame update
