@@ -86,8 +86,9 @@ public class PlayerController : MonoBehaviour
 
         ApplyStateEffects();
         TryToDetectEscapeIfHooked();
-       
+        LimitMoveRegion();
     }
+
 
 
     public float RefreshCurrentSpeed() {
@@ -117,9 +118,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
-     
-     //limit moving on Y-axis
-     transform.position = new Vector3(transform.position.x, Mathf.Clamp( transform.position.y, -3f, 2f), transform.position.z);
     }
 
 
@@ -178,6 +176,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // limit Move region
+    [SerializeField] float leftBound = -7.2f;
+    [SerializeField] float rightBound = 7.2f;
+    [SerializeField] float bottomBound = -4.2f;
+    [SerializeField] float topBound = 2.4f;
+
+    void LimitMoveRegion()
+    {
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, leftBound, rightBound),
+            Mathf.Clamp(transform.position.y, bottomBound, topBound),
+            transform.position.z);
+    }
 
 
     // States manager

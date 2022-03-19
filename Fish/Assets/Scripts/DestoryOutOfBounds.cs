@@ -6,8 +6,7 @@ public class DestoryOutOfBounds : MonoBehaviour
 {
     [SerializeField] float leftBound = -15;
     [SerializeField] float bottomBound = -6f;
-    //[SerializeField] float rightBound = 10;
-    //[SerializeField] float topBound = 2.5f;
+
     // Start is called before the first frame update
     void Start()
     {

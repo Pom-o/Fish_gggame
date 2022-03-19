@@ -4873,6 +4873,10 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   healthbar: {fileID: 145497672}
+  leftBound: -7.2
+  rightBound: 7.2
+  bottomBound: -4.2
+  topBound: 2.4
 --- !u!212 &1647385780
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4932,7 +4936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647385778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2, y: -1.56, z: 0}
+  m_LocalPosition: {x: -6.9, y: -0.9, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
