@@ -1688,7 +1688,7 @@ MonoBehaviour:
   - {fileID: 2512800232044203345, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
   - {fileID: 8521641488994644689, guid: b14f70fcf6f184bc6924b0a583b7f6ae, type: 3}
   startDelay: 5
-  spawnInterval: 1.5
+  spawnInterval: 3
   leftBound: -7.2
   rightBound: 7.2
   bottomBound: -4

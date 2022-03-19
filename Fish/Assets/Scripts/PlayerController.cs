@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float currentSpeed;
 
     // Enemies realted
-    [SerializeField] float hookDamage = 30;
+    [SerializeField] float hookDamage = 15;
 
 
     //when player ate plastic bags[0] / poisoned[1] -> divide the damage cases
@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // limit Move region
-    [SerializeField] float leftBound = -7.2f;
+    [SerializeField] float leftBound = -5.2f;
     [SerializeField] float rightBound = 7.2f;
     [SerializeField] float bottomBound = -4.2f;
     [SerializeField] float topBound = 2.4f;
