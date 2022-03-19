@@ -21,7 +21,7 @@ public class SpawnController : MonoBehaviour
     }
 
     void SpawnRandom() {
-        int index = Random.Range(0, prefabs.Length);
+        int index = Random.Range(0, prefabs.Length - 1);
         Vector3 spawnPos = new Vector3(7, Random.Range(bottomBound, topBound), 0);
         Instantiate(prefabs[index],
             spawnPos,
