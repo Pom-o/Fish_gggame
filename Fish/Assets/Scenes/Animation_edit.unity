@@ -232,10 +232,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6095882175599718541, guid: 3435f9556cf8d461687b9470ebc156e4, type: 3}
-      propertyPath: speed
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6290052826230347713, guid: 3435f9556cf8d461687b9470ebc156e4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -286,30 +282,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3435f9556cf8d461687b9470ebc156e4, type: 3}
---- !u!1 &1296545595 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6290052826230347716, guid: 3435f9556cf8d461687b9470ebc156e4, type: 3}
-  m_PrefabInstance: {fileID: 1296545594}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1296545596
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296545595}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cbe1447f0862941c0b17e3b0f6b3f9ca, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1408984557
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,3 +613,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1830195760
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6389077482430762544, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_Name
+      value: Enemy-Fishnet
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
