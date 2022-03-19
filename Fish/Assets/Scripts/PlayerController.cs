@@ -201,11 +201,20 @@ public class PlayerController : MonoBehaviour
         currentSpeed = RefreshCurrentSpeed();
     }
 
-    void ApplyStateEffects() { 
-       if (states.Contains(State.Hooked) && hookBy is object) {
-            ApplyHookedState();
+    void ApplyStateEffects() {
+        if (states.Contains(State.Hooked))
+        {
+            if (hookBy == null)
+            {
+                EscapeFromHook();
+            }
+            else
+            {
+                ApplyHookedState();
+            }
         }
-       if (states.Contains(State.Toxiced)) {
+        if (states.Contains(State.Toxiced))
+        {
             ApplyToxicedEffet();
         }
     }
@@ -306,10 +315,6 @@ public class PlayerController : MonoBehaviour
     }
     void ApplyHookedState()
     {
-        if (hookBy is null) {
-            EscapeFromHook();
-            return;
-        }
         transform.position = new Vector3(hookBy.transform.position.x, hookBy.transform.position.y, transform.position.z);
         TakeDamage(hookBy.GetComponent<ContinuousDamage>().damage * Time.deltaTime);
         Debug.Log("Press q repeatedly to escape!!!");
@@ -337,9 +342,12 @@ public class PlayerController : MonoBehaviour
     void EscapeFromHook() {
         Debug.Log("Escape from hook state successfully");
         RemoveState(State.Hooked);
-        Destroy(hookBy);
-        hookBy = null;
         hookEscapePressed = 0;
+        if (hookBy != null)
+        {
+            Destroy(hookBy);
+            hookBy = null;
+        }
     }
 
 
