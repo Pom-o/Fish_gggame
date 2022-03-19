@@ -187,10 +187,10 @@ public class PlayerController : MonoBehaviour
     }
 
     // limit Move region
-    [SerializeField] float leftBound = -5.2f;
-    [SerializeField] float rightBound = 7.2f;
-    [SerializeField] float bottomBound = -4.2f;
-    [SerializeField] float topBound = 2.4f;
+    float leftBound = -5.2f;
+    float rightBound = 7.2f;
+    float bottomBound = -4.2f;
+    float topBound = 2.4f;
 
     void LimitMoveRegion()
     {
