@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626fa4a3ccd9e452dbeffb2e747e973d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hookEscapeInterval: 5
-  hookEscapePressTarget: 5
+  hookEscapeInterval: 15
+  hookEscapePressTarget: 3
 --- !u!114 &6389077482430762554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  healthLimitDamage: 5
 --- !u!60 &6389077482430762549
 PolygonCollider2D:
   m_ObjectHideFlags: 0
