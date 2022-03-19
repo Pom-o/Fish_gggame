@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
     //when player ate plastic bags[0] / poisoned[1] -> divide the damage cases
 
     //health control
-    public float currentHealth = 100;
     public int maxHealth;
+    public float currentHealth;
     public HealthBar healthbar;
 
 
@@ -108,8 +108,7 @@ public class PlayerController : MonoBehaviour
 
     void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        healthbar.SetHealth(currentHealth);
+        currentHealth = healthbar.DecreaseHealth(damage);
         Debug.Log("value of damage is " + damage + " .");
         Debug.Log("current health is " + currentHealth + " .");
     }
@@ -295,7 +294,7 @@ public class PlayerController : MonoBehaviour
     void ApplyToxicedEffet()
     {
         TakeDamage(toxicedBy.GetComponent<ContinuousDamage>().damage * Time.deltaTime);
-        healthbar.DecreaseMaxHealthByToxic(toxicedBy.GetComponent<ContinuousDamage>().healthLimitDamage * Time.deltaTime);
+        currentHealth = healthbar.DecreaseMaxHealthByToxic(toxicedBy.GetComponent<ContinuousDamage>().healthLimitDamage * Time.deltaTime);
     }
 
     // Hook State
@@ -307,6 +306,10 @@ public class PlayerController : MonoBehaviour
     }
     void ApplyHookedState()
     {
+        if (hookBy is null) {
+            EscapeFromHook();
+            return;
+        }
         transform.position = new Vector3(hookBy.transform.position.x, hookBy.transform.position.y, transform.position.z);
         TakeDamage(hookBy.GetComponent<ContinuousDamage>().damage * Time.deltaTime);
         Debug.Log("Press q repeatedly to escape!!!");

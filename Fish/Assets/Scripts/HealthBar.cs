@@ -21,20 +21,35 @@ public class HealthBar : MonoBehaviour
         return healthBar.maxValue - toxicBar.value;
     }
 
-    public void DecreaseMaxHealthByToxic(float decreased)
+    private float AvoidOverflow() { 
+        toxicBar.value = Mathf.Clamp(toxicBar.value, 0, toxicBar.maxValue);
+        healthBar.value = Mathf.Clamp(healthBar.value, 0, LimitedMaxHealth());
+        return healthBar.value;
+    }
+
+    public float DecreaseMaxHealthByToxic(float decreased)
     {
         healthBar.value -= decreased;
         toxicBar.value += decreased;
+        return AvoidOverflow();
     }
 
-    public void DecreaseMaxHealthByPlastic(float decreased)
+    public float DecreaseHealth(float decreased)
     {
         healthBar.value -= decreased;
+        return AvoidOverflow();
     }
 
-    public void SetHealth(float health)
+
+    public float DecreaseMaxHealthByPlastic(float decreased)
     {
-        healthBar.value = Mathf.Min(health, LimitedMaxHealth());
+        healthBar.value -= decreased;
+        return AvoidOverflow();
     }
 
+    public float SetHealth(float health)
+    {
+        healthBar.value = health;
+        return AvoidOverflow();
+    }
 }
