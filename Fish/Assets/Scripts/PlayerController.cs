@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip soundEffect_electrocuted;
+    public AudioClip soundEffect_struggling;
+    public AudioClip soundEffect_eat;
+
     public Animator animator;
     public GameObject pressQ;
     enum State { Hooked, Electrocuted, Toxiced, Full, Plasticized }
@@ -214,7 +218,8 @@ public class PlayerController : MonoBehaviour
         currentSpeed = RefreshCurrentSpeed();
     }
 
-    void ApplyStateEffects() {
+    void ApplyStateEffects()
+    {
         if (states.Contains(State.Hooked))
         {
             if (hookBy == null)
