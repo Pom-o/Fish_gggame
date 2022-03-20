@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public AudioClip soundEffect_electrocuted;
+//letters
+    public GameObject readUI;
+    [SerializeField] GameObject pauseMenu;
+
+    
+    
+    //sounds
+     public AudioClip soundEffect_electrocuted;
     public AudioClip soundEffect_struggling;
     public AudioClip soundEffect_eat1;
     public AudioClip soundEffect_eat2;
@@ -16,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip soundEffect_gameOver;
     public AudioClip soundEffect_bottle;
+
+
     
 
 
@@ -83,6 +92,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
+        readUI.SetActive(false);
+
+
         rb = GetComponent<Rigidbody2D>();
         //setup the max health
         healthbar.SetMaxHealth(maxHealth);
@@ -138,7 +151,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("current health is " + currentHealth + " .");
     }
 
+void Pause(){
+    pauseMenu.SetActive(true);
+    Time.timeScale = 0f;
+}
 
+void Resuem(){
+    pauseMenu.SetActive(false);
+    Time.timeScale = 1;
+}
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
@@ -150,7 +171,8 @@ public class PlayerController : MonoBehaviour
      //activate Readletter in UI when encounter with bottle
         if (other.CompareTag("Bottle"))
         {
-           
+            readUI.SetActive(true);
+
         }
         //for damages like plastic bag/ poisoned water / electroized field
         if (other.CompareTag("Food"))
