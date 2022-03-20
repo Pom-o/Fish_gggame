@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         {State.Toxiced, -8 },
         {State.Plasticized, -5 },
         {State.Electrocuted, -9 },
-        {State.Full, 5 }
+        {State.Full, 2 }
     };
 
 
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     float remainRecoverTime = 0;
 
     // For Full state
-    [SerializeField] float fullTime = 5.0f;
+    [SerializeField] float fullTime = 2.0f;
     [SerializeField] float remainFullTime;
 
 
@@ -166,9 +166,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Toxic area
-        if (other.CompareTag("ToxicArea"))
+        if (other.CompareTag("ToxicArea") || other.CompareTag("DeadFish"))
         {
-            Debug.Log("Entering Fishnet");
+            Debug.Log("Entering Fishnet or DeadFish");
             toxicIfNotToxiced(other.gameObject);
         }
 
@@ -183,9 +183,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("ToxicArea"))
+        if (other.CompareTag("ToxicArea") || other.CompareTag("DeadFish"))
         {
-            Debug.Log("Exiting  Fishnet");
+            Debug.Log("Exiting  Fishnet Or DeadFish");
             RemoveState(State.Toxiced);
         }
     }

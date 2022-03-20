@@ -12,6 +12,7 @@ TagManager:
   - Hook
   - BG
   - Canvas
+  - DeadFish
   layers:
   - Default
   - TransparentFX
