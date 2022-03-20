@@ -147,6 +147,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+     //activate Readletter in UI when encounter with bottle
+        if (other.CompareTag("Bottle"))
+        {
+           
+        }
         //for damages like plastic bag/ poisoned water / electroized field
         if (other.CompareTag("Food"))
         {
