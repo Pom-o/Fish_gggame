@@ -12,8 +12,8 @@ public class HealthBar : MonoBehaviour
     private List<GameObject> plastics = new List<GameObject>();
     int suppressByPlastic = 0;
     float helathLimitPerPlastic = 6.6f;
-    public float plasticStartX = 480;
-    public float plasticStartY = -50;
+    float plasticStartX = 455;
+    float plasticStartY = -50;
     int maxPlastics = 15;
     float plasticWidth = 30;
 
