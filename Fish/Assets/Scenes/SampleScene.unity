@@ -1832,7 +1832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &870039800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4093,9 +4093,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2512800232044203344, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2512800232044203345, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
       propertyPath: m_Name
       value: Food-JellyFish2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512800232044203348, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2512800232044203351, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
       propertyPath: m_RootOrder
@@ -4103,11 +4111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2512800232044203351, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.48
+      value: 4.64
       objectReference: {fileID: 0}
     - target: {fileID: 2512800232044203351, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.64
+      value: -1.23
       objectReference: {fileID: 0}
     - target: {fileID: 2512800232044203351, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4141,7 +4149,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2512800232044203346, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f7fd470c05614e429878a1f97568e29, type: 3}
 --- !u!1001 &4060357726262464035
 PrefabInstance:
@@ -4703,6 +4712,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5284463520594963574, guid: b548442466e8d4926912d97874918552, type: 3}
+      propertyPath: m_Name
+      value: Food-JellyFish1_ani
+      objectReference: {fileID: 0}
     - target: {fileID: 9121328352526090009, guid: b548442466e8d4926912d97874918552, type: 3}
       propertyPath: m_Name
       value: Food-JellyFish1
