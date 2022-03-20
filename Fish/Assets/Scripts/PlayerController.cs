@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //letters
-    public GameObject readUI;
-    [SerializeField] GameObject pauseMenu;
 
+    public GameObject readUI;
+    PauseMenu pauseMenu;
 
 
     //sounds
@@ -93,7 +92,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 
-        readUI.SetActive(false);
+
 
 
         rb = GetComponent<Rigidbody2D>();
@@ -157,15 +156,27 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 
+    // public void Pause()
+    // {
+    //     pauseMenu.SetActive(true);
+    //     Time.timeScale = 0f;
+    // }
+
+    // public void Resume()
+    // {
+    //     pauseMenu.SetActive(false);
+    //     Time.timeScale = 1;
+    // }
+
     public void Pause()
     {
-        pauseMenu.SetActive(true);
+        //pauseMenu.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        //pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -173,8 +184,11 @@ public class PlayerController : MonoBehaviour
         //activate Readletter in UI when encounter with bottle
         if (other.CompareTag("Bottle"))
         {
-            readUI.SetActive(true);
+            //readUI.SetActive(true);
             Pause();
+            other.GetComponent<PauseMenu>().SetLetterActive();
+            readUI.SetActive(true);
+            Destroy(other.gameObject);
 
         }
         //for damages like plastic bag/ poisoned water / electroized field
