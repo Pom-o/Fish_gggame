@@ -71,10 +71,10 @@ public class SpawnController : MonoBehaviour
         switch(gameObject.tag) {
             case "DeadFish":
                 return new Vector3(rightBound + 5, 2.7f, 0);
-            case "Fishnet":
-                return new Vector3(rightBound, 1.9f, 0);
             case "Hook":
                 return new Vector3(rightBound, 2f, 0);
+            case "Fishnet":
+                return new Vector3(rightBound, Random.Range(bottomBound, 1.9f), 0);
             default:
                 return new Vector3(8, Random.Range(bottomBound, topBound), 0);
 
