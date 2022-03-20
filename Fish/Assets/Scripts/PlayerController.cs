@@ -7,7 +7,18 @@ public class PlayerController : MonoBehaviour
 {
     public AudioClip soundEffect_electrocuted;
     public AudioClip soundEffect_struggling;
-    public AudioClip soundEffect_eat;
+    public AudioClip soundEffect_eat1;
+    public AudioClip soundEffect_eat2;
+    public AudioClip soundEffect_eat3;
+    public AudioClip soundEffect_eat4;
+    public AudioClip soundEffect_plastic1;
+    public AudioClip soundEffect_plastic2;
+
+    public AudioClip soundEffect_gameOver;
+    public AudioClip soundEffect_bottle;
+    
+
+
 
     public Animator animator;
     public GameObject pressQ;
@@ -141,6 +152,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"Player collided with {other.gameObject.name} . And this is supposed to be the food");
             ApplyFullState(other.gameObject);
+            SoundManager.instance.RandomizesFx (soundEffect_eat1, soundEffect_eat2, soundEffect_eat3, soundEffect_eat4);
         }
 
         // Hook
@@ -149,12 +161,14 @@ public class PlayerController : MonoBehaviour
             TakeDamage(hookDamage);
             other.GetComponent<SelfDestory>().disable();
             hookIfNotHooked(other.gameObject);
+            SoundManager.instance.playSingle(soundEffect_struggling);
         }
 
         // Plastic
         if (other.CompareTag("Plastic"))
         {
             ApplyPlasticizedEffet(other.gameObject);
+            SoundManager.instance.RandomizesFx(soundEffect_plastic1, soundEffect_plastic2);
         }
 
 
@@ -163,6 +177,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Hook by Fishnet");
             hookIfNotHooked(other.gameObject);
+            SoundManager.instance.playSingle(soundEffect_struggling);
         }
 
         // Toxic area
@@ -177,6 +192,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Hitting Electric Shocker");
             ApplyElectrocutedEffet(other.gameObject);
+            SoundManager.instance.playSingle(soundEffect_electrocuted);
         }
 
     }
@@ -193,7 +209,7 @@ public class PlayerController : MonoBehaviour
     // limit Move region
     float leftBound = -5.2f;
     float rightBound = 4.8f;
-    float bottomBound = -4.2f;
+    float bottomBound = -4f;
     float topBound = 2.4f;
 
     void LimitMoveRegion()
@@ -378,6 +394,14 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(hookBy);
             hookBy = null;
+        }
+    }
+
+
+    void CheckIfGameOver(){
+        if (currentHealth <=0) {
+            SoundManager.instance.playSingle (soundEffect_gameOver);
+            SoundManager.instance.musicSource.Stop();
         }
     }
 

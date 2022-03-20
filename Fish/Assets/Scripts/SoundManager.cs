@@ -8,6 +8,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource efxSource;
     public AudioSource musicSource;
 
+    
+
     void Awake () {
         if (instance == null){
             instance = this;

@@ -1981,7 +1981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &870039800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3375,9 +3375,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6d19d6a4c9b4a6ba88e3e478174595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffect_electrocuted: {fileID: 0}
-  soundEffect_struggling: {fileID: 0}
-  soundEffect_eat: {fileID: 0}
+  soundEffect_electrocuted: {fileID: 8300000, guid: 8bef987e6a2b24272838bb53e408e287, type: 3}
+  soundEffect_struggling: {fileID: 8300000, guid: 136d77814227843f3995ee964ca07999, type: 3}
+  soundEffect_eat1: {fileID: 8300000, guid: 7c20870db77c543809aa6eacfcc0f258, type: 3}
+  soundEffect_eat2: {fileID: 8300000, guid: e89d7a8b0b45744bc8db9ba6ef97798c, type: 3}
+  soundEffect_eat3: {fileID: 8300000, guid: 4017fa2c969fe43738fc727b1d9a57bc, type: 3}
+  soundEffect_eat4: {fileID: 8300000, guid: a1db714ba3b754a1ca6a65a26fb6b3c5, type: 3}
+  soundEffect_plastic1: {fileID: 8300000, guid: 1e671a30d93a54a2f82ba27f91a2fa1c, type: 3}
+  soundEffect_plastic2: {fileID: 8300000, guid: e7ab58e98e5b44185bc76b9f5216efc1, type: 3}
+  soundEffect_gameOver: {fileID: 8300000, guid: 6d7f42f4414ec41af8ef75285da6ef0e, type: 3}
+  soundEffect_bottle: {fileID: 0}
   animator: {fileID: 486655274}
   pressQ: {fileID: 294670382}
   hookBy: {fileID: 1647385778}
@@ -4043,8 +4050,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1725067478}
+  - component: {fileID: 1725067479}
   - component: {fileID: 1725067477}
+  - component: {fileID: 1725067478}
   m_Layer: 0
   m_Name: coral
   m_TagString: Untagged
@@ -4103,20 +4111,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1725067478
-Transform:
+--- !u!114 &1725067478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725067476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55cbcbeaefba642c19b63ea87cc41a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+--- !u!224 &1725067479
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725067476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2, y: -3.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.808431, y: 2.808431, z: 2.808431}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3.2, y: -3.4}
+  m_SizeDelta: {x: 3.42, y: 1.47}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1765947678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6290052826230347713, guid: 3435f9556cf8d461687b9470ebc156e4, type: 3}
@@ -4242,8 +4268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf713c17557349dfa7209903d4a5170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efxSource: {fileID: 0}
-  musicSource: {fileID: 0}
+  efxSource: {fileID: 2035389930}
+  musicSource: {fileID: 2035389931}
 --- !u!82 &2035389930
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4350,7 +4376,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9354c3471506f4294b4d56f9b2d16910, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 63d2f9afdcd674dceab12a800b46367c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5523,6 +5549,10 @@ PrefabInstance:
     - target: {fileID: 4548404942230665324, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_Name
       value: PlasticHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548404942230665324, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_Pivot.x
