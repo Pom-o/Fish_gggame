@@ -556,6 +556,8 @@ MonoBehaviour:
   healthBar: {fileID: 145497673}
   toxicBar: {fileID: 199712890}
   plasticPrefab: {fileID: 4548404942230665324, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
+  plasticStartX: 480
+  plasticStartY: -50
 --- !u!114 &145497673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4537,19 +4539,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4589,11 +4591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -43
+      value: 559
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 317
+      value: -137
       objectReference: {fileID: 0}
     - target: {fileID: 6475359043326852785, guid: fd5b1e0e454db4fe7abe2ca607056d50, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

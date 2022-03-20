@@ -12,10 +12,10 @@ public class HealthBar : MonoBehaviour
     private List<GameObject> plastics = new List<GameObject>();
     int suppressByPlastic = 0;
     float helathLimitPerPlastic = 6.6f;
-    float plasticStartX = -125;
+    public float plasticStartX = 480;
+    public float plasticStartY = -50;
     int maxPlastics = 15;
     float plasticWidth = 30;
-    float plasticStartY = 400;
 
 
     float CalculatePlasticOffsetX(int index) {
@@ -72,7 +72,7 @@ public class HealthBar : MonoBehaviour
 
     public float DecreaseMaxHealthByPlastic()
     {
-        if (suppressByPlastic < maxPlastics)
+        if (suppressByPlastic < maxPlastics && LimitedMaxHealth() > 0)
         {
             suppressByPlastic += 1;
             rerenderPlastics();
