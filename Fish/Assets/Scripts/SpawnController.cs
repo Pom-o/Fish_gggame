@@ -14,8 +14,8 @@ public class SpawnController : MonoBehaviour
 
     enum Tag { Food, Plastic, Fishnet, ElectricShocker , ToxicArea, Hook};
     Dictionary<Tag, int> EnemyGenerateRate = new Dictionary<Tag, int> {
-            {Tag.Food, 10 },
-            {Tag.Plastic, 5 },
+            //{Tag.Food, 10 },
+            //{Tag.Plastic, 5 },
             {Tag.Fishnet, 3},
             {Tag.ElectricShocker, 3 },
             {Tag.ToxicArea, 3 },
@@ -24,8 +24,17 @@ public class SpawnController : MonoBehaviour
     List<Tag> EnemyGenerateSample = new List<Tag>();
     Dictionary<Tag, GameObject[]> tag2Fabs; 
 
+    Dictionary<Tag, int> MiscGenerateRate = new Dictionary<Tag, int> {
+            {Tag.Food, 10 },
+            {Tag.Plastic, 5 },
+    };
+    List<Tag> MiscGenerateSample = new List<Tag>();
+
     public float startDelay = 5f;
     public float spawnInterval = 2f;
+
+    public float miscStartDelay = 5f;
+    public float miscSpawnInterval = 2f;
     float leftBound = -5.2f;
     float rightBound = 4.8f;
     float bottomBound = -4f;
@@ -44,7 +53,9 @@ public class SpawnController : MonoBehaviour
             {Tag.Hook, hookRefabs }
            };
         InitEnemiesGenerateSample();
-        InvokeRepeating("SpawnRandom", startDelay, spawnInterval);
+        InitMiscGenerateSample();
+        InvokeRepeating("SpawnRandomEnemies", startDelay, spawnInterval);
+        InvokeRepeating("SpawnRandomMisc", miscStartDelay, miscSpawnInterval);
     }
 
     void InitEnemiesGenerateSample() { 
@@ -55,8 +66,16 @@ public class SpawnController : MonoBehaviour
         }
     }
 
-    void SpawnRandom() {
-        Tag tag = EnemyGenerateSample[Random.Range(0, EnemyGenerateSample.Count)];
+    void InitMiscGenerateSample() { 
+        foreach(var e in MiscGenerateRate) { 
+            for (int i = 0; i < e.Value; i++) {
+                MiscGenerateSample.Add(e.Key);
+            }
+        }
+    }
+
+    void SpawnRandom(List<Tag> sample) {
+        Tag tag = sample[Random.Range(0, sample.Count)];
 
         var prefabs = tag2Fabs[tag];
         var index = Random.Range(0, prefabs.Length);
@@ -64,6 +83,14 @@ public class SpawnController : MonoBehaviour
         Instantiate(prefab,
             GetSpawnPos(prefab),
             prefab.transform.rotation);
+    }
+
+    void SpawnRandomEnemies() {
+        SpawnRandom(EnemyGenerateSample);
+    }
+
+    void SpawnRandomMisc() {
+        SpawnRandom(MiscGenerateSample);
     }
 
     Vector3 GetSpawnPos(GameObject gameObject) {
