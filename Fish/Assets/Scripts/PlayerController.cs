@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-//letters
+    //letters
     public GameObject readUI;
     [SerializeField] GameObject pauseMenu;
 
-    
-    
+
+
     //sounds
-     public AudioClip soundEffect_electrocuted;
+    public AudioClip soundEffect_electrocuted;
     public AudioClip soundEffect_struggling;
     public AudioClip soundEffect_eat1;
     public AudioClip soundEffect_eat2;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip soundEffect_bottle;
 
 
-    
+
 
 
 
@@ -151,27 +151,30 @@ public class PlayerController : MonoBehaviour
         Debug.Log("current health is " + currentHealth + " .");
     }
 
-void Pause(){
-    pauseMenu.SetActive(true);
-    Time.timeScale = 0f;
-}
 
-void Resuem(){
-    pauseMenu.SetActive(false);
-    Time.timeScale = 1;
-}
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
 
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
-     //activate Readletter in UI when encounter with bottle
+        //activate Readletter in UI when encounter with bottle
         if (other.CompareTag("Bottle"))
         {
             readUI.SetActive(true);
+            Pause();
 
         }
         //for damages like plastic bag/ poisoned water / electroized field
@@ -179,7 +182,7 @@ void Resuem(){
         {
             Debug.Log($"Player collided with {other.gameObject.name} . And this is supposed to be the food");
             ApplyFullState(other.gameObject);
-            SoundManager.instance.RandomizesFx (soundEffect_eat1, soundEffect_eat2, soundEffect_eat3, soundEffect_eat4);
+            SoundManager.instance.RandomizesFx(soundEffect_eat1, soundEffect_eat2, soundEffect_eat3, soundEffect_eat4);
         }
 
         // Hook
@@ -425,9 +428,11 @@ void Resuem(){
     }
 
 
-    void CheckIfGameOver(){
-        if (currentHealth <=0) {
-            SoundManager.instance.playSingle (soundEffect_gameOver);
+    void CheckIfGameOver()
+    {
+        if (currentHealth <= 0)
+        {
+            SoundManager.instance.playSingle(soundEffect_gameOver);
             SoundManager.instance.musicSource.Stop();
         }
     }
