@@ -16,10 +16,12 @@ public class SpawnController : MonoBehaviour
     Dictionary<Tag, int> EnemyGenerateRate = new Dictionary<Tag, int> {
             //{Tag.Food, 10 },
             //{Tag.Plastic, 5 },
-            {Tag.Fishnet, 3},
-            {Tag.ElectricShocker, 3 },
-            {Tag.ToxicArea, 3 },
-            {Tag.Hook, 3 }
+            {Tag.Fishnet, 2},
+            {Tag.ElectricShocker, 2 },
+            {Tag.ToxicArea, 2 },
+            {Tag.Hook, 2 },
+            {Tag.Food, 3 },
+            {Tag.Plastic, 3 },
     };
     List<Tag> EnemyGenerateSample = new List<Tag>();
     Dictionary<Tag, GameObject[]> tag2Fabs; 
