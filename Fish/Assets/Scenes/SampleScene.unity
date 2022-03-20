@@ -2635,7 +2635,7 @@ MonoBehaviour:
   hookRefabs:
   - {fileID: 4435865131194433397, guid: 38424417c5466479483b9d313b6cbdaf, type: 3}
   startDelay: 5
-  spawnInterval: 2.5
+  spawnInterval: 2
 --- !u!1 &1411221880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,7 +2937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647385778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.55, y: -1.94, z: 0}
+  m_LocalPosition: {x: -0.98, y: -0.9, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 294670385}
@@ -4472,11 +4472,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.45
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.37
+      value: -3.24
       objectReference: {fileID: 0}
     - target: {fileID: 6389077482430762550, guid: 1f3a34c60a4984072852539686f94fc4, type: 3}
       propertyPath: m_LocalPosition.z
