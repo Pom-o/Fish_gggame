@@ -189,6 +189,7 @@ public class PlayerController : MonoBehaviour
             other.GetComponent<PauseMenu>().SetLetterActive();
             readUI.SetActive(true);
             Destroy(other.gameObject);
+            ClearAllEnemies();
 
         }
         //for damages like plastic bag/ poisoned water / electroized field
@@ -249,6 +250,23 @@ public class PlayerController : MonoBehaviour
             RemoveState(State.Toxiced);
         }
     }
+
+    private string[] EnemyTags =  new string[] {"Fishnet", "DeadFish", "Plastic", "ElectricShocker", "Hook", "ToxicArea" };
+    void ClearAllEnemies() { 
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        foreach (var go in allObjects) {
+            var render = go.GetComponent<Renderer>();
+            if (render == null || !render.isVisible) {
+                continue;
+            }
+            if (System.Array.IndexOf(EnemyTags, go.tag) == -1) {
+                continue;
+            }
+            Destroy(go);
+        }
+
+    }
+
 
     // limit Move region
     float leftBound = -5.2f;
