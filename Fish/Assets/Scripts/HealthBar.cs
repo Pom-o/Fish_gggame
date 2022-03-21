@@ -52,7 +52,13 @@ public class HealthBar : MonoBehaviour
     private float AvoidOverflow() { 
         toxicBar.value = Mathf.Clamp(toxicBar.value, 0, toxicBar.maxValue - suppressByPlastic * helathLimitPerPlastic);
         healthBar.value = Mathf.Clamp(healthBar.value, 0, LimitedMaxHealth());
+        SyncToGlobal();
         return healthBar.value;
+    }
+
+    private void SyncToGlobal() {
+        GlobalData.Instance.plasticEated = suppressByPlastic;
+        GlobalData.Instance.toxicAccumulated = toxicBar.value;
     }
 
     public float DecreaseMaxHealthByToxic(float decreased)
