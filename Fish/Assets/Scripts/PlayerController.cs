@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public GameObject readUI;
+    PauseMenu pauseMenu;
+
+
+    //sounds
     public AudioClip soundEffect_electrocuted;
     public AudioClip soundEffect_struggling;
     public AudioClip soundEffect_eat1;
@@ -16,7 +22,9 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip soundEffect_gameOver;
     public AudioClip soundEffect_bottle;
-    
+
+
+
 
 
 
@@ -83,6 +91,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
+
+
+
         rb = GetComponent<Rigidbody2D>();
         //setup the max health
         healthbar.SetMaxHealth(maxHealth);
@@ -144,20 +156,47 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 
+    // public void Pause()
+    // {
+    //     pauseMenu.SetActive(true);
+    //     Time.timeScale = 0f;
+    // }
 
+    // public void Resume()
+    // {
+    //     pauseMenu.SetActive(false);
+    //     Time.timeScale = 1;
+    // }
+
+    public void Pause()
+    {
+        //pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Resume()
+    {
+        //pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
-     //activate Readletter in UI when encounter with bottle
+        //activate Readletter in UI when encounter with bottle
         if (other.CompareTag("Bottle"))
         {
-           
+            //readUI.SetActive(true);
+            Pause();
+            other.GetComponent<PauseMenu>().SetLetterActive();
+            readUI.SetActive(true);
+            Destroy(other.gameObject);
+
         }
         //for damages like plastic bag/ poisoned water / electroized field
         if (other.CompareTag("Food"))
         {
             Debug.Log($"Player collided with {other.gameObject.name} . And this is supposed to be the food");
             ApplyFullState(other.gameObject);
-            SoundManager.instance.RandomizesFx (soundEffect_eat1, soundEffect_eat2, soundEffect_eat3, soundEffect_eat4);
+            SoundManager.instance.RandomizesFx(soundEffect_eat1, soundEffect_eat2, soundEffect_eat3, soundEffect_eat4);
         }
 
         // Hook
@@ -403,9 +442,11 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void CheckIfGameOver(){
-        if (currentHealth <=0) {
-            SoundManager.instance.playSingle (soundEffect_gameOver);
+    void CheckIfGameOver()
+    {
+        if (currentHealth <= 0)
+        {
+            SoundManager.instance.playSingle(soundEffect_gameOver);
             SoundManager.instance.musicSource.Stop();
         }
     }
