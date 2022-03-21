@@ -5875,8 +5875,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Log item: Plastic Patch\n\nThere were not much information about them
-    before.\n\nNow they\u2019re EVERYWHERE!\n\n"
+  m_text: "Log item: Plastic Patch\n\nOur ancestor didn't even know about them. \n\nAt
+    first, those floating plastics seem harmless, but now they're poisoning our food
+    and environment. \n\nAdvice: avoid the areas with plastic patches. \n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e95d07e8300264b14ba0129c4e8e9d46, type: 2}
   m_sharedMaterial: {fileID: 3406843315908737087, guid: e95d07e8300264b14ba0129c4e8e9d46, type: 2}
@@ -6018,7 +6019,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Log item: Dead Fish\n\nA lot of them caught gets thrown right back overboard
     as BYCATCH, most of them die before they even hit the water. \n\nAnd the diseases
-    are spreading."
+    are spreading. \n\nAdvice: beware of the stench!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e95d07e8300264b14ba0129c4e8e9d46, type: 2}
   m_sharedMaterial: {fileID: 3406843315908737087, guid: e95d07e8300264b14ba0129c4e8e9d46, type: 2}
@@ -6951,7 +6952,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Log item: Heavy metal\n\nWhat we can\u2019t digest, we pass on. \n"
+  m_text: "Log item: Heavy metal\n\nThe heavy metal come from the fishing materials,
+    plastic wastes, and basically all surroundings now.  \n\nIt will accomulate and
+    slowly kill you. \n\n\nAdvice:  Nothing yet. We have to eat them to survive.
+    What we can\u2019t digest, we pass on. \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e95d07e8300264b14ba0129c4e8e9d46, type: 2}
   m_sharedMaterial: {fileID: 3406843315908737087, guid: e95d07e8300264b14ba0129c4e8e9d46, type: 2}
