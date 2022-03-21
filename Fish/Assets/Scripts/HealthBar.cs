@@ -13,14 +13,15 @@ public class HealthBar : MonoBehaviour
     private List<GameObject> plastics = new List<GameObject>();
     int suppressByPlastic = 0;
     float helathLimitPerPlastic = 6.6f;
-    float plasticStartX = 455;
-    float plasticStartY = -50;
+    public float plasticStartX = 455;
+    public float plasticStartY = -50;
+    public float plasticWidth = 30;
+    public float toxicBarOffsetUnit = 4.8f;
     int maxPlastics = 15;
-    float plasticWidth = 30;
-
+    public bool isFinalCut = false;
 
     float CalculatePlasticOffsetX(int index) {
-        return -toxicBar.value * 4.8f +  plasticStartX - plasticWidth * index;
+        return -toxicBar.value * toxicBarOffsetUnit +  plasticStartX - plasticWidth * index;
 
     }
 
@@ -54,15 +55,17 @@ public class HealthBar : MonoBehaviour
         toxicBar.value = Mathf.Clamp(toxicBar.value, 0, toxicBar.maxValue - suppressByPlastic * helathLimitPerPlastic);
         healthBar.value = Mathf.Clamp(healthBar.value, 0, LimitedMaxHealth());
         SyncToGlobal();
-        if (healthBar.value <= 0) { 
+        if (!isFinalCut && healthBar.value <= 0) { 
            SceneManager.LoadScene("FinalCut");
         }
         return healthBar.value;
     }
 
     private void SyncToGlobal() {
+        if (!isFinalCut) { 
         GlobalData.Instance.plasticEated = suppressByPlastic;
         GlobalData.Instance.toxicAccumulated = toxicBar.value;
+        }
     }
 
     public float DecreaseMaxHealthByToxic(float decreased)
@@ -87,7 +90,18 @@ public class HealthBar : MonoBehaviour
             suppressByPlastic += 1;
             rerenderPlastics();
         }
+        Debug.Log($"eatedPlastic: {suppressByPlastic}");
         return AfterHooks();
+    }
+
+    public void SetToxic(float toxic) {
+        toxicBar.value = toxic;
+        rerenderPlastics();
+    }
+
+    public void SetPlasticNumber(int plastic) {
+        suppressByPlastic = plastic;
+        rerenderPlastics();
     }
 
     public float SetHealth(float health)
@@ -95,4 +109,5 @@ public class HealthBar : MonoBehaviour
         healthBar.value = health;
         return AfterHooks();
     }
+
 }
