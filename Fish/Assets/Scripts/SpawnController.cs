@@ -12,16 +12,17 @@ public class SpawnController : MonoBehaviour
     public GameObject[] toxicAreaRefabs;
     public GameObject[] hookRefabs;
 
+
     enum Tag { Food, Plastic, Fishnet, ElectricShocker , ToxicArea, Hook};
     Dictionary<Tag, int> EnemyGenerateRate = new Dictionary<Tag, int> {
             //{Tag.Food, 10 },
             //{Tag.Plastic, 5 },
-            {Tag.Fishnet, 2},
-            {Tag.ElectricShocker, 2 },
-            {Tag.ToxicArea, 2 },
-            {Tag.Hook, 2 },
-            {Tag.Food, 3 },
-            {Tag.Plastic, 3 },
+            {Tag.Fishnet, 3},
+            {Tag.ElectricShocker, 3 },
+            {Tag.ToxicArea, 3 },
+            {Tag.Hook, 3 },
+            {Tag.Food, 2 },
+            {Tag.Plastic, 2 }
     };
     List<Tag> EnemyGenerateSample = new List<Tag>();
     Dictionary<Tag, GameObject[]> tag2Fabs; 
@@ -49,7 +50,7 @@ public class SpawnController : MonoBehaviour
         tag2Fabs = new Dictionary<Tag, GameObject[]> {
             {Tag.Food, foodPrefabs },
             {Tag.Plastic, plasticPrefabs },
-            { Tag.Fishnet, fishnetRefabs},
+            {Tag.Fishnet, fishnetRefabs},
             {Tag.ElectricShocker, electricShockerRefabs },
             {Tag.ToxicArea, toxicAreaRefabs },
             {Tag.Hook, hookRefabs }
