@@ -511,6 +511,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b35bd7d7004726b2ca108fe4335bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entryScene: 1LoggingIn
+  tutorialScene: 2Tutorial
+  gameScene: SampleScene
+  endScene: FinalCut
 --- !u!1 &1150373957
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +527,7 @@ GameObject:
   - component: {fileID: 1150373961}
   - component: {fileID: 1150373960}
   - component: {fileID: 1150373959}
+  - component: {fileID: 1150373962}
   m_Layer: 5
   m_Name: Continue (1)
   m_TagString: Untagged
@@ -594,9 +599,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 754246890}
-        m_TargetAssemblyTypeName: BeginMenu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1150373962}
+        m_TargetAssemblyTypeName: NextScene, Assembly-CSharp
+        m_MethodName: StartGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -644,6 +649,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150373957}
   m_CullTransparentMesh: 1
+--- !u!114 &1150373962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150373957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08b35bd7d7004726b2ca108fe4335bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryScene: 1LoggingIn
+  tutorialScene: 2Tutorial
+  gameScene: SampleScene
+  endScene: FinalCut
 --- !u!1 &1388116647
 GameObject:
   m_ObjectHideFlags: 0

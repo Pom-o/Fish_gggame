@@ -377,7 +377,6 @@ GameObject:
   - component: {fileID: 754246887}
   - component: {fileID: 754246889}
   - component: {fileID: 754246888}
-  - component: {fileID: 754246890}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -444,18 +443,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754246886}
   m_CullTransparentMesh: 1
---- !u!114 &754246890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754246886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b08b35bd7d7004726b2ca108fe4335bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &807156695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,14 +501,14 @@ PrefabInstance:
     - target: {fileID: 1491192426361052349, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 754246890}
+      objectReference: {fileID: 903907226}
     - target: {fileID: 1491192426361052349, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartGame
+      value: StartTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 1491192426361052349, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BeginMenu, Assembly-CSharp
+      value: NextScene, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2490205759575177513, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
       propertyPath: m_SizeDelta.x
@@ -664,6 +651,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
+--- !u!1 &903907221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3493565311925996240, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
+  m_PrefabInstance: {fileID: 807156695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &903907226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903907221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08b35bd7d7004726b2ca108fe4335bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryScene: 1LoggingIn
+  tutorialScene: 2Tutorial
+  gameScene: SampleScene
+  endScene: FinalCut
 --- !u!1 &1388116647
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
@@ -49,10 +50,13 @@ public class HealthBar : MonoBehaviour
         return healthBar.maxValue - toxicBar.value - suppressByPlastic * helathLimitPerPlastic;
     }
 
-    private float AvoidOverflow() { 
+    private float AfterHooks() { 
         toxicBar.value = Mathf.Clamp(toxicBar.value, 0, toxicBar.maxValue - suppressByPlastic * helathLimitPerPlastic);
         healthBar.value = Mathf.Clamp(healthBar.value, 0, LimitedMaxHealth());
         SyncToGlobal();
+        if (healthBar.value <= 0) { 
+           SceneManager.LoadScene("FinalCut");
+        }
         return healthBar.value;
     }
 
@@ -66,13 +70,13 @@ public class HealthBar : MonoBehaviour
         healthBar.value -= decreased;
         toxicBar.value += decreased;
         rerenderPlastics();
-        return AvoidOverflow();
+        return AfterHooks();
     }
 
     public float DecreaseHealth(float decreased)
     {
         healthBar.value -= decreased;
-        return AvoidOverflow();
+        return AfterHooks();
     }
 
 
@@ -83,12 +87,12 @@ public class HealthBar : MonoBehaviour
             suppressByPlastic += 1;
             rerenderPlastics();
         }
-        return AvoidOverflow();
+        return AfterHooks();
     }
 
     public float SetHealth(float health)
     {
         healthBar.value = health;
-        return AvoidOverflow();
+        return AfterHooks();
     }
 }
