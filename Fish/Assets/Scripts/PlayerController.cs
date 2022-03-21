@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
         ApplyStateEffects();
         TryToDetectEscapeIfHooked();
         LimitMoveRegion();
+        CheckIfGameOver();
     }
 
 
