@@ -324,6 +324,7 @@ public class PlayerController : MonoBehaviour
         //use a method to delicious->speedUp + add health ->speedUp disappears
         Destroy(other);
         TakeDamage(-20);
+        currentHealth = healthbar.DecreaseMaxHealthByToxic(2);
 
         remainFullTime += fullTime;
         if (!states.Contains(State.Full))
