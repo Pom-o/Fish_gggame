@@ -803,7 +803,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 594028604}
         m_TargetAssemblyTypeName: NextScene, Assembly-CSharp
-        m_MethodName: StartTutorial
+        m_MethodName: StartGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
