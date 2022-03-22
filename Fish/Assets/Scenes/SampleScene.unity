@@ -8673,7 +8673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3247281770834641503, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_Text
-      value: 'WHAT DOES A FISH KNOWS? '
+      value: 'WHAT DOES A FISH KNOW? '
       objectReference: {fileID: 0}
     - target: {fileID: 3247281770834641503, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_Color.b
