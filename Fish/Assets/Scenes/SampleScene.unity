@@ -8585,11 +8585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3247281769704238393, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 800
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3247281769704238393, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 3247281769704238393, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8653,11 +8653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3247281770834641502, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 556.7704
+      value: 480.7704
       objectReference: {fileID: 0}
     - target: {fileID: 3247281770834641502, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 156.8743
+      value: 106.8743
       objectReference: {fileID: 0}
     - target: {fileID: 3247281770834641502, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -8669,7 +8669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3247281770834641503, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_Text
-      value: 'WHAT DOES THE FISH KNOW? '
+      value: 'WHAT DOES A FISH KNOWS? '
       objectReference: {fileID: 0}
     - target: {fileID: 3247281770834641503, guid: 8c2b9ad25b07c4440b4339842dbdb3d1, type: 3}
       propertyPath: m_Color.b
