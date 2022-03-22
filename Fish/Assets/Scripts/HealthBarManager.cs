@@ -37,6 +37,7 @@ public class HealthBarManager : MonoBehaviour
     {
           var fish = fishBar.GetComponent<HealthBar>();
           var human = humanBar.GetComponent<HealthBar>();
+         
         if (isEating) {
             if (humanToxicAccumulated < toxicAccumulated)
             {

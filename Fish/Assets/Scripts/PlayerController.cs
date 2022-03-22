@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(20);
+            CheckIfGameOver();
         }
         //moveVelocity = (moveInput.normalized +  Vector2.right) * currentSpeed/10;
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
         ApplyStateEffects();
         TryToDetectEscapeIfHooked();
         LimitMoveRegion();
+        CheckIfGameOver();
     }
 
 

@@ -19,6 +19,8 @@ public class HealthBar : MonoBehaviour
     public float toxicBarOffsetUnit = 4.8f;
     int maxPlastics = 15;
     public bool isFinalCut = false;
+    private bool isGameOver = false;
+    public Animator transition;
 
     float CalculatePlasticOffsetX(int index) {
         return -toxicBar.value * toxicBarOffsetUnit +  plasticStartX - plasticWidth * index;
@@ -56,7 +58,8 @@ public class HealthBar : MonoBehaviour
         healthBar.value = Mathf.Clamp(healthBar.value, 0, LimitedMaxHealth());
         SyncToGlobal();
         if (!isFinalCut && healthBar.value <= 0) { 
-           SceneManager.LoadScene("FinalCut");
+           StartCoroutine(LoadFinal());
+           isGameOver = true; 
         }
         return healthBar.value;
     }
@@ -108,6 +111,14 @@ public class HealthBar : MonoBehaviour
     {
         healthBar.value = health;
         return AfterHooks();
+    }
+
+
+    IEnumerator LoadFinal(){
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("FinalCut");
+
     }
 
 }

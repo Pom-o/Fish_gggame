@@ -710,19 +710,31 @@ PrefabInstance:
       value: "My dear fellow Fish,\n\nThe magic bottle has found you...\n\nIt logs
         crucial findings from our ancestors about our surroundings, and has been
         passed through generations to help survival. Now it\u2019s in your fin to
-        inherit the great mission: keep swimming, keep logging!\n\t\n\tBon Voyage!\n\n\t          "
+        inherit the great mission: keep swimming, keep logging!\n\t\n\tBon Voyage!\n\t          "
       objectReference: {fileID: 0}
     - target: {fileID: 2540742487683217789, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
       propertyPath: m_fontSize
-      value: 26.85
+      value: 25.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540742487683217789, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2540742487683217789, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
       propertyPath: m_fontSizeBase
       value: 26.55
       objectReference: {fileID: 0}
     - target: {fileID: 2540742487683217789, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540742487683217789, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540742487683217789, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 3047855685622462000, guid: 107dcb4d2d6234269bcd411242a17f25, type: 3}
       propertyPath: m_Color.a
